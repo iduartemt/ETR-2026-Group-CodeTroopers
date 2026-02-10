@@ -4,6 +4,7 @@
 * *Duarte Martins* (a22400561)
 * *Bruno Martinho* (a22400694)
 * *Diogo Sá* (a22409245)
+* *Denivaldo Antonio* (a22308169)
 
 ## Projeto Escolhido
 *Opção A:* Use the course baseline case study (AMS).

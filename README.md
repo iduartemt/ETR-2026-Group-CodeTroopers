@@ -6,13 +6,16 @@
 * *Diogo Sá* (a22409245)
 * *Denivaldo Antonio* (a22308169)
 
+## Papéis (Lab 1)
+* **Scribe (updates GitBook/docs)** Duarte Martins
+* **Facilitator (keeps time and focus)** Bruno Martinho
+* **Tester (makes sure tests run)** Diogo Sá
+* **Reviewer (checks quality)** Denivaldo Antonio
+
 ## Projeto Escolhido
-*Opção A:* Use the course baseline case study (AMS).
+*Opção A:* Variant 4 — Data Quality & Consistency (Data Steward Persona)
 
 ## Stack Tecnológica
 * Linguagem: Python
 * Testes Unitários: PyTest
 * BDD: Behave (ou pytest-bdd)
-
-## Como correr os testes
-* (TBD - To Be Defined in Lab 2)

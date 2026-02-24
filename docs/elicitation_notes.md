@@ -1,7 +1,7 @@
 # Elicitation Notes — Lab 2 (AMS)
 
 ## Configuração da Entrevista
-- Data: 2026-02-XX
+- Data: 2026-02-17
 - Equipa Cliente: Team X (no papel de AMS Transition Lead)
 - DevTeam: Team <NOME_DA_VOSSA_EQUIPA>
 - Slice discutido: Intake & Discovery (AMS)

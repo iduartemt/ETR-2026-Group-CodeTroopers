@@ -1,37 +1,37 @@
 # Requirements v0 — Lab 2 (AMS)
 
-## 1. Structured Requirements
+## 1. Requisitos Estruturados
 
-| Item | Requirement | Type | Stakeholder | Priority | Variant? |
+| Item | Requisito | Type | Stakeholder | Priority | Variant? |
 |---:|---|---|---|---|---|
-| 1 | The system shall prevent the submission of an Intake form if mandatory fields (System Name, Owner, Support Model) are empty. | FR | Data Steward | H | Yes |
-| 2 | The system shall require a valid "Last DR Test Date" to be filled whenever the "Disaster Recovery" field is set to "Yes". | FR | Data Steward | H | Yes |
-| 3 | The system shall flag an Intake submission as "Inconsistent" if the "Disaster Recovery" field is set to "No" but a test date is provided. | FR | Data Steward | H | Yes |
-| 4 | The system shall require a valid URL linking to the monitoring dashboard to validate the observability evidence. | FR | Transition Lead | M | No |
-| 5 | The system shall automatically reject DR test date evidence if the date provided is older than 12 months from the current date. | FR | Data Steward | H | Yes |
-| 6 | The system shall require an explicitly named Owner (User ID or Email) for every integration declared in the form. | FR | Transition Lead | M | No |
-| 7 | The system shall reject the creation of a new system profile if the "System Name" matches an already existing active system in the database. | FR | Data Steward | H | Yes |
-| 8 | The system shall allow users to save an Intake form in a "Draft" state without triggering mandatory cross-field validations. | FR | Transition Lead | M | Yes |
-| 9 | The system shall transition the Intake to a "Ready to Proceed" state only when all validation rules and consistency checks pass successfully. | FR | Data Steward | H | Yes |
-| 10 | The system shall maintain an audit trail for critical field changes, recording the User ID, timestamp, and the previous/new values. | NFR | Auditor | M | No |
+| 1 | O sistema deve impedir a submissão de um formulário de Intake se os campos obrigatórios (Nome do Sistema, Owner, Modelo de Suporte) estiverem vazios. | FR | Data Steward | H | Yes |
+| 2 | O sistema deve exigir o preenchimento de uma "Data do Último Teste de DR" válida sempre que o campo "Disaster Recovery" for marcado como "Sim". | FR | Data Steward | H | Yes |
+| 3 | O sistema deve assinalar uma submissão de Intake como "Inconsistente" se o campo "Disaster Recovery" for marcado como "Não", mas for fornecida uma data de teste. | FR | Data Steward | H | Yes |
+| 4 | O sistema deve exigir um URL válido que aponte para o dashboard de monitorização para validar a evidência de observabilidade. | FR | Transition Lead | M | No |
+| 5 | O sistema deve rejeitar automaticamente a evidência da data do teste de DR se a data fornecida for superior a 12 meses em relação à data atual. | FR | Data Steward | H | Yes |
+| 6 | O sistema deve exigir a identificação explícita de um Owner (ID de Utilizador ou Email) para cada integração declarada no formulário. | FR | Transition Lead | M | No |
+| 7 | O sistema deve rejeitar a criação de um novo perfil de sistema se o "Nome do Sistema" corresponder a um sistema ativo já existente na base de dados. | FR | Data Steward | H | Yes |
+| 8 | O sistema deve permitir que os utilizadores guardem um formulário de Intake num estado de "Rascunho" (Draft) sem acionar as validações cruzadas obrigatórias. | FR | Transition Lead | M | Yes |
+| 9 | O sistema deve transitar o Intake para o estado "Ready to Proceed" apenas quando todas as regras de validação e verificações de consistência passarem com sucesso. | FR | Data Steward | H | Yes |
+| 10 | O sistema deve manter um registo de auditoria (audit trail) para alterações em campos críticos, registando o ID do Utilizador, a data/hora e os valores anterior e novo. | NFR | Auditor | M | No |
 
 *(Legenda: FR = Functional Requirement, NFR = Non-Functional Requirement, H = High, M = Medium, L = Low)*
 
 ---
 
-## 2. Ambiguity Rewrite (min. 5)
+## 2. Reescrita de Ambiguidade (min. 5)
 
-**1) Original:** "The system must validate data properly." *(Ambíguo: O que é properly?)*
-* **Rewritten:** "The system shall execute cross-field validation rules upon submission and return a specific error message preventing submission if 'DR=No' and 'DR Date' is filled." *(Foco na Variante 4)*
+**1) Original:** "O sistema deve validar os dados corretamente." *(Ambíguo: O que significa corretamente?)*
+* **Reescrito:** "O sistema deve executar regras de validação cruzada no momento da submissão e retornar uma mensagem de erro específica, impedindo a submissão se 'DR=Não' e a 'Data de DR' estiver preenchida." *(Foco na Variante 4)*
 
-**2) Original:** "The system should show if data is bad." *(Ambíguo: Como mostra? O que é bad?)*
-* **Rewritten:** "The system shall explicitly mark an intake record with an 'Invalid' status flag when mandatory fields are missing or cross-field inconsistencies are detected." *(Foco na Variante 4)*
+**2) Original:** "O sistema deve mostrar se a informação está má." *(Ambíguo: Como mostra? O que é "má"?)*
+* **Reescrito:** "O sistema deve marcar explicitamente um registo de Intake com o estado 'Inválido' quando faltarem campos obrigatórios ou forem detetadas inconsistências cruzadas entre campos." *(Foco na Variante 4)*
 
-**3) Original:** "The system must be fast." *(Ambíguo: Quão rápido?)*
-* **Rewritten:** "The system shall process intake form validations and return feedback (success or error messages) to the user in under 2 seconds for 95% of submissions."
+**3) Original:** "O sistema deve ser rápido." *(Ambíguo: Quão rápido?)*
+* **Reescrito:** "O sistema deve processar as validações do formulário de Intake e apresentar o feedback (mensagens de sucesso ou erro) ao utilizador em menos de 2 segundos para 95% das submissões."
 
-**4) Original:** "Evidence must be recent." *(Ambíguo: O que é recente?)*
-* **Rewritten:** "The system shall reject operational evidence attachments or links if the associated 'evidence date' provided is older than 6 months."
+**4) Original:** "A evidência deve ser recente." *(Ambíguo: O que é recente?)*
+* **Reescrito:** "O sistema deve rejeitar anexos ou links de evidências operacionais se a 'data da evidência' associada for superior a 6 meses."
 
-**5) Original:** "The system should be secure." *(Ambíguo: Seguro como?)*
-* **Rewritten:** "The system shall restrict the approval of the 'Ready to Proceed' state exclusively to users authenticated with the 'Data Steward' or 'Transition Lead' role."
+**5) Original:** "O sistema deve ser seguro." *(Ambíguo: Seguro de que forma?)*
+* **Reescrito:** "O sistema deve restringir a transição para o estado 'Ready to Proceed' exclusivamente a utilizadores autenticados e com a função (role) de 'Data Steward' ou 'Transition Lead'."

@@ -35,3 +35,7 @@
 
 **5) Original:** "O sistema deve ser seguro." *(Ambíguo: Seguro de que forma?)*
 * **Reescrito:** "O sistema deve restringir a transição para o estado 'Ready to Proceed' exclusivamente a utilizadores autenticados e com a função (role) de 'Data Steward' ou 'Transition Lead'."
+
+* ID,Cenário,Critério de Aceitação
+AC.1,Submissão com campos obrigatórios vazios,"Se o utilizador tentar submeter o Intake sem o ""Owner"" ou ""Modelo de Suporte"", o sistema deve bloquear a ação, marcar o estado como ""Incomplete"" e exibir uma mensagem de erro realçando os campos em falta."
+AC.2,Inconsistência de Disaster Recovery,"Se ""Disaster Recovery = Não"" e ""Data do Teste"" estiver preenchida, o sistema deve impedir a transição para ""Ready to Proceed"", marcar o registo como ""Inconsistent"" e exigir a correção dos dados."

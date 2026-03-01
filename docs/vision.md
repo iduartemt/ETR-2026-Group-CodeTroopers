@@ -3,7 +3,7 @@
 O módulo de Intake & Discovery do AMS visa automatizar a entrada e validação inicial de ativos de hardware na organização. O objetivo é garantir que nenhum equipamento entra no inventário sem passar por um processo rigoroso de verificação de qualidade (Data Quality), focando-se em regras de consistência entre campos para reduzir erros humanos e dados incompletos.
 
 ## 3 Objetivos Principais
-1.  **Validação e Consistência Cruzada (Variant 4):** Implementar regras de dependência complexas entre campos (ex: Se o tipo de ativo for 'Portátil', o campo 'Capacidade da Bateria' torna-se obrigatório), garantindo que dados interdependentes estão coerentes.
+1.  **Validação e Consistência Cruzada (Variant 4):** Implementar regras de dependência complexas entre campos. Por exemplo, se o campo "Disaster Recovery" for marcado como "Sim", o campo "Data do Último Teste" torna-se obrigatório e deve ser validado.
 2.  **Deteção de Duplicados:** Impedir a criação de registos de ativos que já existem no sistema através da verificação do número de série e fabricante.
 3.  **Auditoria de Criação:** Registar automaticamente a data, hora e utilizador responsável pela criação de cada novo registo, permitindo rastrear a origem de dados incorretos.
 

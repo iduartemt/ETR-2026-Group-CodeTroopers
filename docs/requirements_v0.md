@@ -19,23 +19,32 @@
 
 ---
 
-## 2. Reescrita de Ambiguidade (min. 5)
+## 3. Critérios de Aceitação (Foco em Estados Inválidos e Consistência)
 
-**1) Original:** "O sistema deve validar os dados corretamente." *(Ambíguo: O que significa corretamente?)*
-* **Reescrito:** "O sistema deve executar regras de validação cruzada no momento da submissão e retornar uma mensagem de erro específica, impedindo a submissão se 'DR=Não' e a 'Data de DR' estiver preenchida." *(Foco na Variante 4)*
+Estes critérios definem as condições necessárias para que uma funcionalidade seja aceite, focando-se na prevenção de dados inconsistentes (Variante 4).
 
-**2) Original:** "O sistema deve mostrar se a informação está má." *(Ambíguo: Como mostra? O que é "má"?)*
-* **Reescrito:** "O sistema deve marcar explicitamente um registo de Intake com o estado 'Inválido' quando faltarem campos obrigatórios ou forem detetadas inconsistências cruzadas entre campos." *(Foco na Variante 4)*
+| ID | Cenário | Critério de Aceitação |
+|:---|:---|:---|
+| **AC.1** | Submissão com campos obrigatórios em falta | **Dado** que o utilizador está no formulário de Intake, **Quando** tenta submeter sem preencher "Nome do Sistema" ou "Owner", **Então** o sistema deve bloquear a submissão, apresentar uma mensagem de erro e manter o estado como **"Incomplete"**. |
+| **AC.2** | Validação de consistência de Disaster Recovery (DR) | **Dado** que o utilizador selecionou "Disaster Recovery = Não", **Quando** insere uma data no campo "Último Teste de DR", **Então** o sistema deve marcar o Intake como **"Inconsistent"** e impedir a transição para "Ready to Proceed" até que a contradição seja resolvida. |
+| **AC.3** | Validação de caducidade de evidência | **Dado** que uma evidência operacional é carregada, **Quando** a data da evidência for superior a 12 meses em relação à data atual, **Então** o sistema deve rejeitar o ficheiro com um aviso de "Evidência Expirada". |
 
-**3) Original:** "O sistema deve ser rápido." *(Ambíguo: Quão rápido?)*
-* **Reescrito:** "O sistema deve processar as validações do formulário de Intake e apresentar o feedback (mensagens de sucesso ou erro) ao utilizador em menos de 2 segundos para 95% das submissões."
+---
 
-**4) Original:** "A evidência deve ser recente." *(Ambíguo: O que é recente?)*
-* **Reescrito:** "O sistema deve rejeitar anexos ou links de evidências operacionais se a 'data da evidência' associada for superior a 6 meses."
+## 4. Plano de Testes de Qualidade de Dados (Variante 4)
 
-**5) Original:** "O sistema deve ser seguro." *(Ambíguo: Seguro de que forma?)*
-* **Reescrito:** "O sistema deve restringir a transição para o estado 'Ready to Proceed' exclusivamente a utilizadores autenticados e com a função (role) de 'Data Steward' ou 'Transition Lead'."
+Conforme exigido pela variante, definimos os seguintes cenários de teste para validar a consistência cruzada.
 
-* ID,Cenário,Critério de Aceitação
-AC.1,Submissão com campos obrigatórios vazios,"Se o utilizador tentar submeter o Intake sem o ""Owner"" ou ""Modelo de Suporte"", o sistema deve bloquear a ação, marcar o estado como ""Incomplete"" e exibir uma mensagem de erro realçando os campos em falta."
-AC.2,Inconsistência de Disaster Recovery,"Se ""Disaster Recovery = Não"" e ""Data do Teste"" estiver preenchida, o sistema deve impedir a transição para ""Ready to Proceed"", marcar o registo como ""Inconsistent"" e exigir a correção dos dados."
+### Teste 1: Validação de Estado Inconsistente (Lógica Cruzada)
+* **Objetivo:** Garantir que o sistema deteta informações contraditórias.
+* **Input:** `Disaster Recovery = "Não"` E `Data do Teste = "2024-05-20"`.
+* **Resultado Esperado:** O sistema deve lançar um erro de validação e impedir o estado "Ready".
+
+### Teste 2: Validação de Validade Temporal (Teste Parametrizado)
+Este teste utiliza múltiplos cenários de dados para validar a regra de "máximo 12 meses".
+
+| ID | Input (Idade da Evidência) | Resultado Esperado |
+|:---|:---|:---|
+| **T2.1** | 6 meses atrás | **Sucesso**: Evidência aceite. |
+| **T2.2** | 13 meses atrás | **Falha**: Sistema rejeita por antiguidade (Limite > 12 meses). |
+| **T2.3** | Data no futuro (+1 mês) | **Falha**: Sistema rejeita por data inválida. |

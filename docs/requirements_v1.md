@@ -1,6 +1,6 @@
 # Requirements v1 — Lab 3 (CodeTroopers) 
 
-## 1. Objetivos e CSFs (Cadeia de Valor)
+## 1. Objetivos e CSFs (Cadeia de Valor)    
 * **OBJ-1: Garantir a integridade e consistência dos dados de inventário.**
     * **CSF-1.1:** Implementar validações cruzadas obrigatórias entre campos dependentes.
     * **CSF-1.2:** Impedir a entrada de dados contraditórios ou obsoletos (evidência caducada).

@@ -1,4 +1,4 @@
-# Requirements v1 — Lab 3 (CodeTroopers)
+# Requirements v1 — Lab 3 (CodeTroopers) 
 
 ## 1. Objetivos e CSFs (Cadeia de Valor)
 * **OBJ-1: Garantir a integridade e consistência dos dados de inventário.**

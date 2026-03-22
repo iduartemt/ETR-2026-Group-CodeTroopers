@@ -31,19 +31,19 @@
 
 ## Fatores Críticos de Sucesso (FCSs) e Mapeamento
 
-### FCS-1: Implementar Validação Cruzada Obrigatória (Ligação: OBJ-1)
+### FCS-1: Dados de inventário são consistentes, completos e validados antes da gravação (Ligação: OBJ-1)
 - **REQ-001:** Validação de Campos Obrigatórios
 - **REQ-002:** Condicionalidade de Teste de DR
 - **REQ-003:** Deteção de Inconsistência de DR
 - **REQ-004:** Validação de Caducidade de Evidências
 - **NFR-004:** Métrica de Qualidade de Dados (100% consistência)
 
-### FCS-2: Garantir a Imutabilidade dos Logs de Auditoria (Ligação: OBJ-2)
+### FCS-2: Alterações a dados críticos são totalmente rastreáveis e justificáveis (Ligação: OBJ-2)
 - **REQ-006:** Gestão de Estados de Submissão (Rastreio de transições)
 - **NFR-001:** Log de Auditoria Detalhado
 - **NFR-006:** Retenção de Logs por 12 meses
 
-### FCS-3: Providenciar Interface de Validação de Alta Performance (Ligação: OBJ-3)
+### FCS-3: O feedback de erros é imediato e preserva a eficiência operacional do utilizador (Ligação: OBJ-3)
 - **REQ-005:** Prevenção de Duplicados Síncrona
 - **NFR-002:** Performance de Validação (<500ms)
 - **NFR-005:** Mensagens de Erro Contextuais

@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+actor "End User" as User
+actor "Data Steward" as Steward
+actor "Asset Database" as DB <<External System>>
+
+rectangle "AMS Intake & Data Quality Platform" {
+  usecase "UC-01: Submeter Novo Ativo" as UC1
+  usecase "UC-02: Gerir Rascunhos" as UC2
+  usecase "UC-03: Carregar Evidência" as UC3
+  usecase "UC-04: Validar Regras de Consistência" as UC4
+  usecase "UC-05: Resolver Inconsistências" as UC5
+  usecase "UC-06: Exportar Logs de Auditoria" as UC6
+  
+  ' Relacionamentos
+  UC1 ..> UC4 : <<include>>
+  UC1 ..> UC3 : <<include>>
+  UC5 ..> UC4 : <<extend>>
+}
+
+User --> UC1
+User --> UC2
+Steward --> UC5
+Steward --> UC6
+
+UC4 -- DB : Verifica Duplicados
+@enduml

@@ -1,12 +1,15 @@
-## Gaps / Observations
+# Traceability — Use Cases ↔ Requirements (Lab 6)
 
-### 1. Use case without requirements
-- **UC-06 (Exportar Logs):** Este caso de uso está mapeado apenas a Requisitos Não Funcionais (NFR). Revela a falta de um requisito funcional (REQ) que defina as permissões de exportação. 
-  - *Candidato: REQ-008 (Exportação de Dados).*
+## Mapping (UC → REQ)
 
-### 2. Requirement without use cases
-- **REQ-009 (Backup Automático):** (Exemplo) Este requisito está no documento V1 mas não é coberto por nenhum Caso de Uso, pois é uma tarefa de sistema em background.
+| Use Case | Linked Requirements (REQ-###) | Notes |
+|---|---|---|
+| **UC-01** | REQ-001, REQ-002, REQ-003, REQ-005, REQ-006 | Cobre todo o fluxo de submissão e estados. |
+| **UC-02** | REQ-006 | Gestão de estados de rascunho. |
+| **UC-03** | REQ-004 | Foco no carregamento de evidência e sua validade. |
+| **UC-04** | REQ-001, REQ-002, REQ-003, REQ-004, NFR-004 | Núcleo de validação da Variante 4. |
+| **UC-05** | REQ-003, REQ-006 | Interação do Steward para corrigir dados sinalizados. |
+| **UC-06** | NFR-001, NFR-006 | Exportação de logs para fins de auditoria e retenção. |
 
-### 3. Missing requirement candidates revealed by modeling
-- **REQ-007 (Notificação de Erro Externo):** Identificado ao modelar o UC-01/E2. O sistema precisa de uma regra para notificar o utilizador quando a *Asset Database* está offline.
-- **REQ-010 (Validação de Integridade de Ficheiros):** Identificado no UC-03. Falta um requisito que especifique a validação de formato e tamanho máximo para os PDFs de evidência.
+## Gaps / Observations (optional)
+- **Missing requirement candidate:** REQ-007 (Notificação de Erro): Percebeu-se ao modelar o UC-01/E2 que o sistema necessita de uma regra explícita sobre como notificar falhas em sistemas externos.

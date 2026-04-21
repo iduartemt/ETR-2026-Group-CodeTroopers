@@ -1,7 +1,7 @@
 # Vibe Coding Log — Lab 8
 
 ## Tool used
-- Codex / Lovable / Other: Lovable (ou v0/Claude)
+- Lovable / Gemini
 - Environment/stack: React, TypeScript, Tailwind CSS, Shadcn UI (in-memory state)
 
 ## Iteration 1

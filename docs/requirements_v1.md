@@ -78,8 +78,16 @@
 * **Declaração Mensurável:** Resposta < 500ms para 95% dos pedidos de validação cruzada.
 * **Impacto da Variante:** Sim (Eficiência).
 
+### NFR-003: Disponibilidade
+* **Declaração Mensurável:** O serviço de validação deve garantir um uptime de 99.9% mensal durante horário laboral.
+* **Impacto da Variante:** Não.
+
 ### NFR-004: Qualidade de Dados Garantida
 * **Declaração Mensurável:** 100% dos ativos em "Ready" devem cumprir as regras do motor de consistência.
 
 ### NFR-005: Tempo de Resposta da UI (Feedback)
 * **Declaração Mensurável:** Identificação visual do erro em < 1s após falha de validação.
+
+### NFR-006: Retenção de Logs
+* **Declaração Mensurável:** Manter logs de auditoria num formato WORM (Write Once Read Many) por um período mínimo de 12 meses.
+* **Impacto da Variante:** Não.

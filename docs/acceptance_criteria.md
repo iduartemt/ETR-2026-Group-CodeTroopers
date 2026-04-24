@@ -1,27 +1,28 @@
 # Acceptance Criteria — Lab 7
 
-## REQ-001 — Mandatory Base Fields Validation
-- AC-1: O sistema deve bloquear a submissão se 'Nome do Sistema', 'Owner' ou 'Modelo de Suporte' estiverem vazios ou contiverem apenas espaços.
-- AC-2: [Variante-Driven] Devem ser exibidas mensagens de erro específicas (ex: "O campo [Nome] é obrigatório") junto ao campo em falta.
-- AC-3: A regra deve ser verificada tanto na interface (UI) como no servidor (API) para evitar contornos.
+## REQ-001 — Validação de Campos Obrigatórios
+- **AC-1:** O sistema deve validar a presença de 'Nome', 'Owner' e 'Suporte' no momento do clique em "Submeter Ready".
+- **AC-2:** Caracteres invisíveis (espaços) devem ser ignorados (`trim`).
+- **AC-3:** O sistema deve marcar o campo vazio com uma moldura vermelha.
 
-## REQ-002 — Condicionalidade de Teste de DR (Given/When/Then)
-- Given que o utilizador selecionou a opção "Sim" no campo "Disaster Recovery (DR)"
-- When tenta submeter o formulário sem preencher a "Data do Último Teste"
-- Then o sistema deve interromper o processo e exibir um alerta visual a vermelho.
+## REQ-002 — Condicionalidade DR (Given/When/Then)
+- **Given** que o utilizador selecionou "DR = Sim".
+- **When** o utilizador deixa a "Data do Último Teste" vazia.
+- **Then** o sistema exibe o erro "Campo obrigatório para sistemas com resiliência" e impede a gravação em estado Ready.
 
-## REQ-003 — DR Inconsistency Detection (Given/When/Then)
-- Given que o utilizador marcou o campo "DR" como "Não"
-- When existe um valor preenchido no campo "Data do Último Teste"
-- Then o sistema deve impedir a transição para "Pronto" e alterar o estado para "Inconsistente".
+## REQ-003 — Inconsistência DR (Given/When/Then)
+- **Given** que o utilizador selecionou "DR = Não".
+- **When** o utilizador introduz qualquer data no campo de teste.
+- **Then** o sistema altera o estado para "Inconsistent" e bloqueia a finalização até correção.
 
-## REQ-004 — Evidence Expiration Validation
-- AC-1: O sistema deve extrair a data dos metadados do ficheiro ou do input manual.
-- AC-2: [Variante-Driven] O ficheiro deve ser rejeitado se a data for superior a 12 meses face à data atual.
-- AC-3: O sistema deve emitir o erro específico "Evidência expirada (>1 ano)".
+## REQ-005 — Caducidade (Variante 4)
+- **AC-1:** O sistema deve comparar a data do ficheiro com `Date.now()`.
+- **AC-2:** Se a diferença > 365 dias, o sistema lança exceção "Evidência Expirada".
 
-## NFR-002 — Performance de Validação
-- AC-1: 95% dos pedidos de validação cruzada devem responder em menos de 500ms.
+## REQ-007 — Unicidade de Hostname
+- **AC-1:** Ao perder o foco do campo 'Nome do Sistema', o sistema deve consultar a API de ativos.
+- **AC-2:** Se o código de resposta for "Duplicate (409)", o botão "Ready" deve ser desativado.
 
-## NFR-005 — Mensagens de Erro de Consistência
-- AC-1: O sistema deve identificar o campo exato com erro em menos de 1 segundo após a falha.
+## NFR-002 — Performance (Variante 4)
+- **AC-1:** O processamento das regras REQ-002 e REQ-003 no backend deve ser medido por telemetria.
+- **AC-2:** A latência média deve situar-se abaixo dos 500ms.

@@ -1,24 +1,24 @@
 # Definition of Done (DoD) — Lab 7
 
 ## DoD — Requirement (REQ-### / NFR-###)
-A requirement is considered "Done" when:
-1. It has a stable ID (REQ-001 to 009 or NFR-001 to 006), clear title, and type explicitly defined (FR/NFR).
-2. The primary Stakeholder (e.g., Data Steward, Transition Lead) and Author are clearly recorded.
-3. The description is unambiguous, testable, and avoids implementation leakage (focuses on the "What" and "Why", not the "How").
-4. Acceptance criteria exist (min. 2–4), are fully verifiable, and cover both success (happy) and error/exception paths (crucial for Data Quality).
-5. **[Variant Focus]** Variant impact is stated (Yes/No). If 'Yes', the specific cross-field validation logic or data integrity rule must be clearly defined.
-6. **[NFR Focus]** If it is a Non-Functional Requirement, it contains a quantifiable, measurable statement (e.g., "< 500ms", "100% compliance", "< 1s UI response").
-7. Links and dependencies to other requirements are identified (e.g., REQ-009 depends on REQ-001 to REQ-007).
-8. Conflicts/duplicates have been resolved and validated through a team role-play session.
-9. Validation method is defined (e.g., Peer Review / Demo / Automated Test / Telemetry Measurement).
+Um requisito é considerado "Done" (Concluído) quando:
+1. Possui um ID estável (REQ-001 a 009 ou NFR-001 a 006), um título claro e o tipo explicitamente definido (FR/NFR).
+2. O Stakeholder principal (ex: Data Steward, Transition Lead) e o Autor estão claramente registados.
+3. A descrição é inequívoca, testável e evita fugas de implementação (foca-se no "O quê" e "Porquê", e não no "Como").
+4. Existem critérios de aceitação (mín. 2–4), são totalmente verificáveis e cobrem tanto o caminho de sucesso (happy path) como os de erro/exceção (crucial para a Qualidade de Dados).
+5. **[Foco na Variante]** O impacto da variante está indicado (Sim/Não). Se 'Sim', a lógica específica de validação cruzada entre campos ou a regra de integridade de dados deve estar claramente definida.
+6. **[Foco nos NFR]** Se for um Requisito Não Funcional, contém uma declaração quantificável e mensurável (ex: "< 500ms", "100% de conformidade", "< 1s de tempo de resposta na UI").
+7. Estão identificadas as ligações e dependências com outros requisitos (ex: REQ-009 depende do REQ-001 ao REQ-007).
+8. Conflitos ou duplicações foram resolvidos e validados através de uma sessão de role-play em equipa.
+9. O método de validação está definido (ex: Revisão por Pares / Demo / Teste Automatizado / Medição de Telemetria).
 
 ## DoD — User Story (US-###)
-A user story is considered "Done" when:
-1. The story is written in the correct format (*As a... I want to... So that...*) providing clear business value for the AMS Intake process.
-2. Acceptance criteria are agreed upon, BDD-friendly (*Given/When/Then* where applicable), and explicitly mapped to the project requirements.
-3. **[Variant Focus]** Implementation acts as a strict "Gatekeeper": it guarantees zero data inconsistencies, obsolete files, or duplicates can transition to the "Ready to Proceed" state.
-4. Appropriate tests exist (Unit tests for validation logic, Integration tests for APIs) and pass successfully.
-5. No critical or blocking defects remain in the code branch (specifically, no bypassed mandatory validations).
-6. System architecture, traceability matrices (`traceability_uc_req.md`), and API documentation are updated (if changes were made).
-7. Code has passed Peer Review (Pull Request approved and merged by at least 1 other developer).
-8. The Product Owner / Data Steward accepts the outcome via a successful visual Demo validation.
+Uma User Story é considerada "Done" (Concluída) quando:
+1. A história está escrita no formato correto (Como um... Eu quero... Para que...), fornecendo claro valor de negócio para o processo de AMS Intake.
+2. Os critérios de aceitação foram acordados, são compatíveis com BDD (Given/When/Then quando aplicável) e estão explicitamente mapeados para os requisitos do projeto.
+3. **[Foco na Variante]** A implementação atua como um "Gatekeeper" (filtro) rigoroso: garante que zero inconsistências de dados, ficheiros obsoletos ou registos duplicados possam transitar para o estado "Ready to Proceed".
+4. Existem testes adequados (Testes Unitários para lógica de validação, Testes de Integração para APIs) e passam com sucesso.
+5. Não restam defeitos críticos ou bloqueantes na branch de código (especificamente, nenhuma validação obrigatória foi contornada ou desativada).
+6. A arquitetura do sistema, matrizes de rastreabilidade (`traceability_uc_req.md`) e documentação da API foram atualizadas (caso tenham ocorrido alterações).
+7. O código passou por Revisão por Pares (Pull Request aprovado e integrado/merged por pelo menos 1 outro developer).
+8. O Product Owner / Data Steward aceita o resultado através de uma validação visual bem-sucedida (Demo).

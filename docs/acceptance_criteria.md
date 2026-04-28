@@ -9,11 +9,17 @@
 - **Given** que o utilizador selecionou a opção "DR = Sim".
 - **When** o utilizador deixa a "Data do Último Teste" vazia e tenta submeter.
 - **Then** o sistema exibe o erro "Campo obrigatório para sistemas com resiliência" e impede a gravação em estado "Ready".
-
+- **AC-1:** O sistema deve exibir o campo "Data do Último Teste" e marcá-lo visualmente como obrigatório assim que o utilizador selecionar a opção "Sim" no campo "Disaster Recovery (DR)".
+- **AC-2** Se o utilizador selecionar "Sim" em DR e tentar "Submeter Final" com a "Data do Último Teste" vazia, o sistema deve bloquear a submissão e exibir a mensagem de erro "Campo obrigatório para sistemas com resiliência".
+- **AC-3** Se o utilizador selecionar "Sim" e preencher uma data válida, o sistema deve aceitar a transação e permitir o avanço na validação do motor de regras.
+- 
 ## REQ-003 — Inconsistência DR (Given/When/Then)
 - **Given** que o utilizador selecionou "DR = Não".
 - **When** o utilizador introduz qualquer data no campo de teste de DR.
 - **Then** o sistema altera o estado da transação para "Inconsistent" e bloqueia a finalização até a contradição ser corrigida.
+- **AC-1** Se o utilizador selecionar a opção "Não" no campo "Disaster Recovery (DR)", o sistema deve desativar (disabled) ou ocultar o campo "Data do Último Teste" para evitar preenchimento acidental.
+- **AC-2** Se o utilizador mudar a seleção de "Sim" para "Não", o sistema deve limpar/apagar automaticamente qualquer data que já estivesse preenchida no campo de teste.
+- **AC-3** Se for injetada uma submissão onde o DR é "Não" mas existe uma data de teste preenchida (ex: falha de frontend ou via API), o sistema deve rejeitar a transição e marcar o ativo como "Inconsistent".
 
 ## REQ-004 — Validação de URL de Dashboard
 - **AC-1:** O campo de URL deve rejeitar ativamente strings que não comecem por `https://`.
@@ -36,6 +42,8 @@
 - **Given** que o formulário tem campos obrigatórios em falta ou falha em validações cruzadas.
 - **When** o utilizador clica em "Guardar Rascunho".
 - **Then** o sistema grava os dados parcialmente na tabela e atribui a *flag* de estado `is_draft=True`.
+- **AC-1** Ao clicar no botão "Guardar Rascunho", o sistema deve obrigatoriamente ignorar todas as validações de campos obrigatórios e regras de inconsistência lógica.
+- **AC-2** Os dados preenchidos no formulário devem ser guardados com sucesso no armazenamento local/base de dados e o estado da transação deve ser classificado como "Draft".
 
 ## REQ-009 — Transição para "Ready to Proceed"
 - **AC-1:** A transição de estado na base de dados para "Ready" só ocorre se o payload do motor de regras retornar 0 erros lógicos.
@@ -44,10 +52,12 @@
 
 ## NFR-001 — Log de Auditoria
 - **AC-1:** Qualquer alteração (update) aos campos "Nome", "Owner" ou "Disaster Recovery" num ativo já existente gera um registo em tabela *append-only*.
-- **AC-1:** Alterações efetuadas a campos não críticos (ex: Observações) devem ser guardadas com sucesso na base de dados sem gerar qualquer nova entrada na tabela de auditoria append-only. (Garante que não enchem a base de dados de logs desnecessários).
+- **AC-2:** Alterações efetuadas a campos não críticos (ex: Observações) devem ser guardadas com sucesso na base de dados sem gerar qualquer nova entrada na tabela de auditoria append-only. (Garante que não enchem a base de dados de logs desnecessários).
 
 ## NFR-002 — Performance (Variante 4)
 - **AC-1:** O processamento interno das regras lógicas REQ-002 e REQ-003 deve ser executado no percentil 95 (P95) abaixo de 500ms.
+- **AC-2** A interface de utilizador não deve bloquear de forma silenciosa. Se a execução assíncrona do motor de regras demorar mais de 200ms, o sistema deve desativar o botão de submissão e apresentar um indicador de carregamento (loading spinner) contínuo até à receção do resultado final. (Garante que o utilizador não clica múltiplas vezes por impaciência).
 
 ## NFR-004 — Qualidade de Dados Garantida (Variante 4)
 - **AC-1:** Tentativas de chamadas diretas (via Postman/cURL) à API para criar ativos no estado "Ready" com dados inconsistentes devem ser rejeitadas pelo backend.
+- **AC-2:** O formulário de Intake e o respetivo motor de regras devem operar com uma taxa de disponibilidade de 99.9% durante o horário de expediente comercial.

@@ -1,6 +1,6 @@
 # Definition of Done (DoD) — Lab 7
 
-## DoD — Requirement (REQ-### / NFR-###)
+## DoD — Requirement
 Um requisito é considerado "Done" (Concluído) quando:
 1. Possui um ID estável (REQ-001 a 009 ou NFR-001 a 006), um título claro e o tipo explicitamente definido (FR/NFR).
 2. O Stakeholder principal (ex: Data Steward, Transition Lead) e o Autor estão claramente registados.
@@ -12,7 +12,7 @@ Um requisito é considerado "Done" (Concluído) quando:
 8. Conflitos ou duplicações foram resolvidos e validados através de uma sessão de role-play em equipa.
 9. O método de validação está definido (ex: Revisão por Pares / Demo / Teste Automatizado / Medição de Telemetria).
 
-## DoD — User Story (US-###)
+## DoD — User Story
 Uma User Story é considerada "Done" (Concluída) quando:
 1. A história está escrita no formato correto (Como um... Eu quero... Para que...), fornecendo claro valor de negócio para o processo de AMS Intake.
 2. Os critérios de aceitação foram acordados, são compatíveis com BDD (Given/When/Then quando aplicável) e estão explicitamente mapeados para os requisitos do projeto.

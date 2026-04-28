@@ -39,9 +39,12 @@
 
 ## REQ-009 — Transição para "Ready to Proceed"
 - **AC-1:** A transição de estado na base de dados para "Ready" só ocorre se o payload do motor de regras retornar 0 erros lógicos.
+- **AC-2:** Ao clicar no botão "Submeter Final", o sistema deve obrigatoriamente forçar a reexecução de todo o motor de regras (UC-04), não assumindo como válidos quaisquer dados previamente guardados no estado "Draft".
+- **AC-3:* Se o motor de regras retornar 1 ou mais erros (ex: inconsistência ou dados em falta), a transição para "Ready" deve ser abortada, o ativo deve manter o estado "Draft" ou "Incompleto" na base de dados, e os erros devem ser sinalizados na interface.
 
 ## NFR-001 — Log de Auditoria
 - **AC-1:** Qualquer alteração (update) aos campos "Nome", "Owner" ou "Disaster Recovery" num ativo já existente gera um registo em tabela *append-only*.
+- **AC-1:** Alterações efetuadas a campos não críticos (ex: Observações) devem ser guardadas com sucesso na base de dados sem gerar qualquer nova entrada na tabela de auditoria append-only. (Garante que não enchem a base de dados de logs desnecessários).
 
 ## NFR-002 — Performance (Variante 4)
 - **AC-1:** O processamento interno das regras lógicas REQ-002 e REQ-003 deve ser executado no percentil 95 (P95) abaixo de 500ms.

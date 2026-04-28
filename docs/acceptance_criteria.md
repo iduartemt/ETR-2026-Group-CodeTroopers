@@ -25,6 +25,8 @@
 
 ## REQ-006 — Identificação de Owner em Integrações
 - **AC-1:** O campo de identificação do Owner da integração deve validar o formato de um e-mail corporativo válido (ex: `@empresa.com`).
+- **AC-2:** O sistema deve rejeitar a atribuição e exibir a mensagem "Utilizador inativo ou não encontrado no diretório" caso o e-mail ou ID inserido não exista na base de dados central (Active Directory).
+- **AC-3:** Ao digitar os primeiros 3 caracteres no campo de "Owner da Integração", o sistema deve consultar a API do diretório e apresentar uma lista pendente (dropdown) com no máximo 5 sugestões de utilizadores ativos correspondentes.
 
 ## REQ-007 — Unicidade de Hostname (Variante 4)
 - **AC-1:** Ao perder o foco (*onBlur*) do campo 'Nome do Sistema', o sistema deve consultar a API de ativos via `GET`.

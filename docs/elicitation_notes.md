@@ -3,7 +3,7 @@
 ## Configuração da Entrevista
 - Data: 2026-02-17
 - Equipa Cliente: Team X (no papel de AMS Transition Lead)
-- DevTeam: Team <NOME_DA_VOSSA_EQUIPA>
+- DevTeam: CodeTroopers Team
 - Slice discutido: Intake & Discovery (AMS)
 - Variante: 4 — Data Quality & Consistency (Data Steward Persona)
 

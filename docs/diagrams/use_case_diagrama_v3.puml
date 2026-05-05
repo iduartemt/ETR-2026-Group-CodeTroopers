@@ -1,47 +1,38 @@
 @startuml
-left to right direction
-skinparam packageStyle rectangle
-skinparam linetype ortho
+title UC-01 — Submeter Ativo (Validações e Estados)
 
-' ===== ACTORS =====
-actor "Transition Lead\n(End User)" as User
-actor "Data Steward / Auditor" as Steward
-actor "Active Directory\n(External System)" as AD
-actor "Asset Database\n(External System)" as DB
+actor Utilizador
 
-' ===== SYSTEM =====
-rectangle "AMS Intake & Data Quality Platform" {
+rectangle Sistema {
 
-  ' --- CORE ---
-  usecase "UC-01\nSubmeter Novo Ativo" as UC1
+  usecase "UC-01 Submeter Ativo" as UC01
 
-  ' --- SUPPORT (User side) ---
-  usecase "UC-02\nGerir Rascunhos" as UC2
-  usecase "UC-03\nUpload de Evidências" as UC3
+  usecase "Validar Campos Obrigatórios" as UC1
+  usecase "Validar Condicional DR" as UC2
+  usecase "Detetar Inconsistência DR" as UC3
+  usecase "Validar URL Dashboard" as UC4
+  usecase "Validar Caducidade Evidências" as UC5
+  usecase "Selecionar Owner (AD)" as UC6
+  usecase "Verificar Duplicados" as UC7
+  usecase "Guardar Draft" as UC8
+  usecase "Transitar para Ready to Proceed" as UC9
+  usecase "Registar Log de Auditoria" as UC10
 
-  ' --- VALIDATION ---
-  usecase "UC-04\nValidar Regras de Consistência" as UC4
-  usecase "UC-05\nResolver Inconsistências" as UC5
-
-  ' --- AUDIT ---
-  usecase "UC-06\nConsultar e Exportar Logs" as UC6
-
-  ' ===== RELATIONSHIPS =====
-  UC1 ..> UC3 : <<include>>
-  UC1 ..> UC4 : <<include>>
-
-  UC5 ..> UC4 : <<extend>>
-  UC2 ..> UC1 : <<extend>>
 }
 
-' ===== ASSOCIATIONS =====
-User --> UC1
-User --> UC2
+Utilizador --> UC01
 
-Steward --> UC5
-Steward --> UC6
+' Includes (sempre executados na submissão)
+UC01 --> UC1 : <<include>>
+UC01 --> UC2 : <<include>>
+UC01 --> UC3 : <<include>>
+UC01 --> UC4 : <<include>>
+UC01 --> UC5 : <<include>>
+UC01 --> UC6 : <<include>>
+UC01 --> UC7 : <<include>>
+UC01 --> UC10 : <<include>>
 
-' ===== EXTERNAL SYSTEMS =====
-UC1 --> AD
-UC4 --> DB
+' Extend (comportamento opcional)
+UC8 ..> UC01 : <<extend>> (Guardar como Draft)
+UC9 ..> UC01 : <<extend>> (Submeter Final)
 @enduml

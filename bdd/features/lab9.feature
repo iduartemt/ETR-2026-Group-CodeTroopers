@@ -1,25 +1,25 @@
-Feature: Data Quality and Consistency Gatekeeper (Variant 4)
-  As a Data Steward
-  I want to ensure all inventory data is logically sound and unique
-  So that the CMDB remains a reliable source of truth.
+Funcionalidade: Gatekeeper de Qualidade e Consistência de Dados (Variante 4)
+  Como Data Steward (Gestor de Qualidade de Dados)
+  Quero garantir que todos os dados do inventário são logicamente consistentes e únicos
+  Para que a CMDB permaneça como uma "fonte da verdade" confiável.
 
-  # REQ links: REQ-003, REQ-007, REQ-008
+  # Links de Requisitos: REQ-003, REQ-007, REQ-008
 
-  Scenario: Prevent contradictory Disaster Recovery information
-    Given the user selects "Disaster Recovery = Não"
-    And the user attempts to provide a "Data do Último Teste"
-    When the user clicks "Submeter Final"
-    Then the system must block the transition to "Ready" status
-    And the record state must be marked as "Inconsistent"
+  Cenário: Prevenir informações contraditórias de Disaster Recovery
+    Dado que o utilizador seleciona "Disaster Recovery = Não"
+    E o utilizador tenta fornecer uma "Data do Último Teste"
+    Quando o utilizador clica em "Submeter Final"
+    Então o sistema deve bloquear a transição para o estado "Ready"
+    E o estado do registo deve ser marcado como "Inconsistent"
 
-  Scenario: Allow partial progress via Draft mode
-    Given the user has mandatory fields empty (Name or Owner)
-    When the user selects "Guardar Rascunho"
-    Then the system must bypass all consistency checks
-    And save the record with the status "Draft"
+  Cenário: Permitir progresso parcial através do modo Rascunho (Draft)
+    Dado que o utilizador tem campos obrigatórios vazios (Nome ou Owner)
+    Quando o utilizador seleciona "Guardar Rascunho"
+    Então o sistema deve ignorar todas as verificações de consistência
+    E guardar o registo com o estado "Draft"
 
-  Scenario: Detect duplicate asset name via Asset Database
-    Given the hostname "CORE-ERP" already exists in the system
-    When the user enters "CORE-ERP" in the system name field
-    Then the system must display an error "Ativo já existe na base de dados"
-    And disable the final submission button
+  Cenário: Detetar nome de ativo duplicado através da Base de Dados de Ativos
+    Dado que o hostname "CORE-ERP" já existe no sistema
+    Quando o utilizador insere "CORE-ERP" no campo de nome do sistema
+    Então o sistema deve exibir um erro "Ativo já existe na base de dados"
+    E desativar o botão de submissão final

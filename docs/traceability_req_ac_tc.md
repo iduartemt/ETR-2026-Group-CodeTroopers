@@ -12,5 +12,5 @@
 | **REQ-008** | Gestão de Estados (Draft) | **AC-1:** Ignorar validações lógicas ao guardar rascunho.<br>**AC-2:** Persistir dados com a flag `is_draft=True`. | **TC-006:** Gravação de Rascunho com Dados em Falta<br>**SCEN-002:** Permitir progresso parcial através do modo Rascunho (Draft) |
 | **REQ-009** | Transição para "Ready" | **AC-1:** Exigir 0 erros lógicos para transição.<br>**AC-2:** Forçar reexecução total do motor na submissão. | **TC-003:** (Reutilizado para validar bloqueio de transição)<br>**TC-009:** Fluxo completo de transição para "Ready" |
 
----
+--
 
